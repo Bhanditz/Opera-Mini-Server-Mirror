@@ -45,7 +45,6 @@ function application(req, res){
       res.end();
     });
     originRequest.on("error", function(error){
-      console.log(error);
       res.end();
     });
     originRequest.write(Buffer.concat(requestBuffer));
