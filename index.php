@@ -13,6 +13,11 @@ $headers[] = 'Connection: keep-alive';
 $headers[] = 'Accept: ' . $_SERVER['HTTP_ACCEPT'];
 $headers[] = 'User-Agent: ' . $_SERVER['HTTP_USER_AGENT'];
 
+$serverAddr = 'http://mini5.opera-mini.net/';
+if(isset($_SERVER['HTTP_X_PREFER_SERVER']) and $_SERVER['HTTP_X_PREFER_SERVER']){
+  $serverAddr = 'http://' . $_SERVER['HTTP_X_PREFER_SERVER'] . '/';
+}
+
 function readBody(&$curlInterface, &$content){
   $ret = strlen($content);
   echo $content;
@@ -32,7 +37,7 @@ $curlInterface = curl_init();
 curl_setopt($curlInterface,CURLOPT_POST, TRUE);
 curl_setopt($curlInterface,CURLOPT_HEADER, FALSE);
 curl_setopt($curlInterface,CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($curlInterface,CURLOPT_URL, 'http://mini5.opera-mini.net/');
+curl_setopt($curlInterface,CURLOPT_URL, $serverAddr);
 curl_setopt($curlInterface,CURLOPT_POSTFIELDS, file_get_contents('php://input'));
 curl_setopt($curlInterface,CURLOPT_HTTPHEADER, $headers);
 curl_setopt($curlInterface,CURLOPT_WRITEFUNCTION, 'readBody');

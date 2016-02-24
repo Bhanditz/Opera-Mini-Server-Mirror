@@ -13,6 +13,12 @@ function application(req, res){
     res.end();
     return;
   }
+
+  var serverUrl = "http://mini5.opera-mini.net/";
+  if(req.headers["x-prefer-server"]){
+    serverUrl = "http://" + req.headers["x-prefer-server"] + "/";
+  }
+
   var requestBuffer = [];
 
   req.on("data", function(requestChunk){
