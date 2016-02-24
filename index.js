@@ -26,7 +26,7 @@ function application(req, res){
   });
 
   req.on("end", function(){
-    var option = url.parse("http://mini5.opera-mini.net/");
+    var option = url.parse(serverUrl);
     option.method = "POST";
 
     option.headers = {
